@@ -1,3 +1,49 @@
+<?php
+    $products = [
+        [
+            "id" => 1,
+            "title" => "Lenovo IdeaPad 3",
+            "description" => "Lenovo IdeaPad 3 15IAU7 Intel Core i5-1235U/16GB/512GB SSD/15.6''",
+            "img" => "https://thumb.pccomponentes.com/w-300-300/articles/1063/10639213/1359-lenovo-ideapad-3-15iau7-intel-core-i5-1235u-16gb-512gb-ssd-156.jpg"
+        ],
+        [
+            "id" => 2,
+            "title" => "Logitech G502",
+            "description" => "Logitech G502 Hero Ratón Gaming 25600DPI",
+            "img" => "https://thumb.pccomponentes.com/w-300-300/articles/17/179806/244-logitech-g502-hero-raton-gaming-16000dpi-caracteristicas.jpg"
+        ],
+        [
+            "id" => 3,
+            "title" => "Google Nest Mini",
+            "description" => "Google Nest Mini Altavoz Inteligente con Asistente Tiza 22,89€",
+            "img" => "https://thumb.pccomponentes.com/w-300-300/articles/24/243521/image-mini2-19-0403-0294-10-white-ttq-r04-simp.jpg"
+        ],
+        [
+            "id" => 4,
+            "title" => "HyperX Cloud Flight",
+            "description" => "HyperX Cloud Flight Auriculares Gaming Inalámbricos69,99€",
+            "img" => "https://thumb.pccomponentes.com/w-300-300/articles/1004/10042294/1601-hyperx-cloud-flight-auriculares-gaming-inalambricos.jpg"
+        ],
+        [
+            "id" => 5,
+            "title" => "AOC 24G2SAE",
+            "description" => "AOC 24G2SAE/BK 23.8'' LED FullHD 165Hz FreeSync Premium",
+            "img" => "https://thumb.pccomponentes.com/w-300-300/articles/1002/10026204/1597-aoc-27g2sae-bk-27-wled-fullhd-165hz-freesync-premium.jpg"
+        ],
+        [
+            "id" => 6,
+            "title" => "Silla Gaming",
+            "description" => "AOC 24G2SAE/BK 23.8'' LED FullHD 165Hz FreeSync Premium",
+            "img" => "Nacon CH-550 Silla Gaming 118,99€"
+        ]
+        
+    ];
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,76 +63,38 @@
     <main>
         <div class="container">
             <div class="row">
+                <?php
+                    foreach ($products as $product) {
+                ?>
                     <div class="card" style="width: 18rem;">
-                        <img src="https://thumb.pccomponentes.com/w-300-300/articles/1063/10639213/1359-lenovo-ideapad-3-15iau7-intel-core-i5-1235u-16gb-512gb-ssd-156.jpg" class="card-img-top" alt="">
+                        <img src="<?= $product['img'] ?>" alt="">
                         <div class="card-body">
-                            <h5 class="card-title">Lenovo IdeaPad 3</h5>
-                            <p class="card-text">Lenovo IdeaPad 3 15IAU7 Intel Core i5-1235U/16GB/512GB SSD/15.6"</p>
+                            <h5 class="card-title"><?= $product['title'] ?></h5>
+                            <p class="card-text"><?= $product['description'] ?></p>
                             
                             <?php
-                                if( !$session -> added(1)){
-
+                                if( !$session -> added($product['id'])){
                             ?>
                                 <form action="<?= FOLDER ?>/addToCart" method="POST">
-                                    <input type="hidden" name="id" value="1">
+                                    <input type="hidden" name="id" value="<?= $product['id'] ?>">
                                     <input type="submit" value="Añadir al carrito" class="btn btn-primary">
                                 </form>
                             <?php 
                                 }else{
                             ?>
                                 <form action="<?= FOLDER ?>/removeToCart" method="POST">
-                                    <input type="hidden" name="id" value="1">
+                                    <input type="hidden" name="id" value="<?= $product['id'] ?>">
                                     <input type="submit" value="Quitar del carrito" class="btn btn-primary">
                                 </form>
-
-
                             <?php
                                 }
                             ?>
     
                         </div>
                     </div>
-                    <div class="card" style="width: 18rem;">
-                        <img src="https://thumb.pccomponentes.com/w-300-300/articles/17/179806/244-logitech-g502-hero-raton-gaming-16000dpi-caracteristicas.jpg" class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">Logitech G502</h5>
-                            <p class="card-text">Lenovo IdeaPad 3 15IAU7 Intel Core i5-1235U/16GB/512GB SSD/15.6"</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                    <div class="card" style="width: 18rem;">
-                        <img src="https://thumb.pccomponentes.com/w-300-300/articles/24/243521/image-mini2-19-0403-0294-10-white-ttq-r04-simp.jpg" class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">Google Nest Mini</h5>
-                            <p class="card-text">Google Nest Mini Altavoz Inteligente con Asistente Tiza 22,89€</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                    <div class="card" style="width: 18rem;">
-                        <img src="https://thumb.pccomponentes.com/w-300-300/articles/1004/10042294/1601-hyperx-cloud-flight-auriculares-gaming-inalambricos.jpg" class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">HyperX Cloud Flight</h5>
-                            <p class="card-text">HyperX Cloud Flight Auriculares Gaming Inalámbricos69,99€</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                    <div class="card" style="width: 18rem;">
-                        <img src="https://thumb.pccomponentes.com/w-300-300/articles/1002/10026204/1597-aoc-27g2sae-bk-27-wled-fullhd-165hz-freesync-premium.jpg" class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">AOC 24G2SAE</h5>
-                            <p class="card-text">AOC 24G2SAE/BK 23.8" LED FullHD 165Hz FreeSync Premium</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                    <div class="card" style="width: 18rem;">
-                        <img src="https://thumb.pccomponentes.com/w-300-300/articles/28/289561/nacon-ch-550-silla-gaming.jpg" class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">Silla Gaming</h5>
-                            <p class="card-text">Nacon CH-550 Silla Gaming 118,99€</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-            
+                <?php
+                    }
+                ?>
             </div>
         </div>
     </main>
